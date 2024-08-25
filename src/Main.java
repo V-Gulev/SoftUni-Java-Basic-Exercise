@@ -3,29 +3,29 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int foodKG = Integer.parseInt(scanner.nextLine());
-        foodKG = foodKG * 1000;
-        int foodPerDay;
-        int totalFoodEaten = 0;
-        while (true) {
-            String input = scanner.nextLine();
+        int locations = Integer.parseInt(scanner.nextLine());
+        double minedGold = 0;
+        double averageGold;
+        for (int i = 0; i < locations; i++) {
+            double expectedAverageGold = Double.parseDouble(scanner.nextLine());
+            int daysMining = Integer.parseInt(scanner.nextLine());
 
-            if (input.equals("Adopted")) {
-                break;
-            } else {
-                foodPerDay = Integer.parseInt(input);
+            for (int j = 0; j < daysMining; j++) {
+                double goldMinedPerDay = Double.parseDouble(scanner.nextLine());
+                minedGold += goldMinedPerDay;
             }
-
-            totalFoodEaten += foodPerDay;
+            averageGold = minedGold / daysMining;
+            if (averageGold >= expectedAverageGold) {
+                System.out.printf("Good job! Average gold per day: %.2f.%n",averageGold);
+            } else {
+                double neededGold = expectedAverageGold - averageGold;
+                System.out.printf("You need %.2f gold.%n",neededGold);
+            }
+            minedGold = 0;
         }
 
-        if (totalFoodEaten > foodKG) {
-            int neededFood = totalFoodEaten - foodKG;
-            System.out.printf("Food is not enough. You need %d grams more.",neededFood);
-        } else {
-            int leftFood = foodKG - totalFoodEaten;
-            System.out.printf("Food is enough! Leftovers: %d grams.",leftFood);
-        }
+
+
 
     }
 }
