@@ -3,20 +3,19 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int buckets = Integer.parseInt(scanner.nextLine());
-        int rolls = Integer.parseInt(scanner.nextLine());
-        double priceGloves = Double.parseDouble(scanner.nextLine());
-        double priceBrush = Double.parseDouble(scanner.nextLine());
+        int cpus = Integer.parseInt(scanner.nextLine());
+        int workers = Integer.parseInt(scanner.nextLine());
+        int days = Integer.parseInt(scanner.nextLine());
 
-        double totalBucket = buckets * 21.50;
-        double totalRoll = rolls * 5.20;
-        int gloves = (int) Math.ceil(0.35 * rolls);
-        int brushes = (int) Math.floor(0.48 * buckets);
-        double totalGloves = priceGloves * gloves;
-        double totalBrushes = priceBrush * brushes;
-        double total = totalBrushes + totalGloves + totalBucket + totalRoll;
-        double delivery = total / 15;
-        System.out.printf("This delivery will cost %.2f lv.",delivery);
+        int hoursWorked = workers * days * 8;
+        int cpusMade = (int) Math.floor(hoursWorked / 3);
 
+        if (cpusMade >= cpus) {
+            double profit = (cpusMade - cpus) * 110.10;
+            System.out.printf("Profit: -> %.2f BGN",profit);
+        } else {
+            double loss = (cpus - cpusMade) * 110.10;
+            System.out.printf("Losses: -> %.2f BGN",loss);
+        }
     }
 }
